@@ -21,6 +21,7 @@ import type {
   ItineraryStatus,
   TripMeta,
 } from '../types';
+import { hasUnsafeHtml, sanitizePlainText } from '../utils/sanitize';
 
 interface ItineraryModuleProps {
   items: ItineraryItem[];
@@ -127,6 +128,7 @@ export function ItineraryModule({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const trimmedPlace = formPlace.trim();
+    const trimmedMemo = formMemo.trim();
     if (!/^([01]\d|2[0-3]):[0-5]\d$/.test(formTime)) {
       setFormError('올바른 시간(HH:MM)을 입력해 주세요.');
       return;
@@ -139,24 +141,30 @@ export function ItineraryModule({
       setFormError('장소명은 60자 이내로 입력해 주세요.');
       return;
     }
+    if (hasUnsafeHtml(trimmedPlace) || hasUnsafeHtml(trimmedMemo)) {
+      setFormError('HTML 태그나 script 코드는 입력할 수 없습니다.');
+      return;
+    }
     setFormError('');
+    const safePlace = sanitizePlainText(trimmedPlace);
+    const safeMemo = sanitizePlainText(trimmedMemo);
     if (editingItem) {
       onUpdate({
         ...editingItem,
         day: formDay,
         time: formTime,
-        place: trimmedPlace,
+        place: safePlace,
         category: formCategory,
-        memo: formMemo.trim(),
+        memo: safeMemo,
         status: formStatus,
       });
     } else {
       onAdd({
         day: formDay,
         time: formTime,
-        place: trimmedPlace,
+        place: safePlace,
         category: formCategory,
-        memo: formMemo.trim(),
+        memo: safeMemo,
         status: formStatus,
       });
       setSelectedDay(formDay);

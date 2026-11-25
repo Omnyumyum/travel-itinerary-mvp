@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { RotateCcw, Pencil, Compass, X, Check } from 'lucide-react';
 import type { TripMeta } from '../types';
+import { hasUnsafeHtml, sanitizePlainText } from '../utils/sanitize';
 
 interface HeaderProps {
   tripMeta: TripMeta;
@@ -34,12 +35,20 @@ export function Header({ tripMeta, onUpdateTripMeta, onResetAll }: HeaderProps) 
       setError('여행 제목은 40자 이내로 입력해 주세요.');
       return;
     }
+    if (
+      hasUnsafeHtml(trimmedTitle) ||
+      hasUnsafeHtml(durationBadge) ||
+      hasUnsafeHtml(subtitle)
+    ) {
+      setError('HTML 태그나 script 코드는 입력할 수 없습니다.');
+      return;
+    }
     setError('');
     onUpdateTripMeta({
       ...tripMeta,
-      title: trimmedTitle,
-      durationBadge: durationBadge.trim() || '여행',
-      subtitle: subtitle.trim() || '가이드 & 여행객 통합 관리',
+      title: sanitizePlainText(trimmedTitle),
+      durationBadge: sanitizePlainText(durationBadge) || '여행',
+      subtitle: sanitizePlainText(subtitle) || '가이드 & 여행객 통합 관리',
     });
     setIsEditingTrip(false);
   };

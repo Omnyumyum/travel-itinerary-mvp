@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Megaphone, PencilLine, Check, X } from 'lucide-react';
 import type { NoticeData } from '../types';
+import { hasUnsafeHtml, sanitizePlainText } from '../utils/sanitize';
 
 interface NoticeBannerProps {
   notice: NoticeData;
@@ -25,11 +26,15 @@ export function NoticeBanner({ notice, onUpdateNotice }: NoticeBannerProps) {
       setError('공지 내용을 입력해 주세요.');
       return;
     }
+    if (hasUnsafeHtml(trimmed)) {
+      setError('HTML 태그나 script 코드는 입력할 수 없습니다.');
+      return;
+    }
     setError('');
     const now = new Date();
     const timeLabel = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
     onUpdateNotice({
-      content: trimmed,
+      content: sanitizePlainText(trimmed),
       updatedAt: `방금 ${timeLabel}`,
     });
     setIsEditing(false);

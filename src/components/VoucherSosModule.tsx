@@ -13,6 +13,7 @@ import {
   X,
 } from 'lucide-react';
 import type { EmergencyContact, TaxiCardData, VoucherItem, VoucherType } from '../types';
+import { hasUnsafeHtml, sanitizePlainText } from '../utils/sanitize';
 
 interface VoucherSosModuleProps {
   vouchers: VoucherItem[];
@@ -115,13 +116,23 @@ export function VoucherSosModule({
       setTaxiError('현지어 숙소명과 현지어 주소는 필수 입력 항목입니다.');
       return;
     }
+    if (
+      hasUnsafeHtml(taxiForm.hotelNameLocal) ||
+      hasUnsafeHtml(taxiForm.addressLocal) ||
+      hasUnsafeHtml(taxiForm.hotelNameKo) ||
+      hasUnsafeHtml(taxiForm.addressKo) ||
+      hasUnsafeHtml(taxiForm.languageLabel)
+    ) {
+      setTaxiError('HTML 태그나 script 코드는 입력할 수 없습니다.');
+      return;
+    }
     setTaxiError('');
     onUpdateTaxiCard({
-      hotelNameLocal: taxiForm.hotelNameLocal.trim(),
-      addressLocal: taxiForm.addressLocal.trim(),
-      hotelNameKo: taxiForm.hotelNameKo.trim(),
-      addressKo: taxiForm.addressKo.trim(),
-      languageLabel: taxiForm.languageLabel.trim() || '현지어 택시 안내 카드',
+      hotelNameLocal: sanitizePlainText(taxiForm.hotelNameLocal),
+      addressLocal: sanitizePlainText(taxiForm.addressLocal),
+      hotelNameKo: sanitizePlainText(taxiForm.hotelNameKo),
+      addressKo: sanitizePlainText(taxiForm.addressKo),
+      languageLabel: sanitizePlainText(taxiForm.languageLabel) || '현지어 택시 안내 카드',
     });
     setEditingTaxi(false);
   };
@@ -353,31 +364,58 @@ export function VoucherSosModule({
         </div>
       )}
 
-      {/* Taxi Card Fullscreen Modal */}
+      {/* Taxi Card Fullscreen Modal (Stitch Design) */}
       {taxiFullscreen && (
         <div
-          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-on-surface p-6 text-center"
+          className="fixed inset-0 z-50 bg-tertiary-fixed flex flex-col p-5 justify-between"
           onClick={() => setTaxiFullscreen(false)}
         >
-          <div className="w-full max-w-[420px] rounded-3xl bg-white p-7 space-y-5 shadow-2xl">
-            <span className="inline-block px-3 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed text-[12px] font-bold">
-              택시 기사님 안내용
+          <div
+            className="flex items-center justify-between pt-safe max-w-[440px] w-full mx-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <span className="px-3 py-1.5 rounded-full bg-on-tertiary-fixed text-tertiary-fixed text-[12px] font-bold">
+              🚖 기사님께 (To Driver)
+            </span>
+            <button
+              type="button"
+              onClick={() => setTaxiFullscreen(false)}
+              aria-label="택시 카드 전체 화면 닫기"
+              className="w-10 h-10 rounded-full bg-on-tertiary-fixed/10 text-on-tertiary-fixed flex items-center justify-center cursor-pointer"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+
+          <div
+            className="w-full max-w-[440px] mx-auto my-auto bg-surface-container-lowest rounded-2xl p-6 shadow-xl text-center space-y-3"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <span className="block text-[14px] text-on-surface-variant">
+              여기로 가주세요 (Please take me here)
             </span>
             <h3 className="text-[28px] font-bold text-on-surface leading-tight break-keep">
               {taxiCard.hotelNameLocal}
             </h3>
-            <p className="text-[18px] font-semibold text-on-surface-variant leading-relaxed break-keep">
+            <div className="w-full h-1 bg-tertiary-fixed rounded-full my-2" />
+            <p className="text-[18px] font-semibold text-on-surface select-all break-keep">
               {taxiCard.addressLocal}
             </p>
-            <div className="pt-4 border-t border-outline-variant/40 text-[13px] text-outline">
+            <p className="text-[13px] text-on-surface-variant pt-1">
               {taxiCard.hotelNameKo} ({taxiCard.addressKo})
-            </div>
+            </p>
+          </div>
+
+          <div
+            className="w-full max-w-[440px] mx-auto pb-safe"
+            onClick={(e) => e.stopPropagation()}
+          >
             <button
               type="button"
               onClick={() => setTaxiFullscreen(false)}
-              className="w-full py-3 rounded-xl bg-primary-container text-on-primary text-[14px] font-bold cursor-pointer"
+              className="w-full h-14 bg-on-tertiary-fixed text-tertiary-fixed rounded-xl text-[15px] font-bold shadow-lg active:scale-95 transition-all cursor-pointer"
             >
-              닫기
+              확인 완료 (화면 닫기)
             </button>
           </div>
         </div>

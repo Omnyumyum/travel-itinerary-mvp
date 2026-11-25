@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { Plus, Trash2, Check, ListChecks } from 'lucide-react';
 import type { ChecklistCategory, ChecklistItem } from '../types';
+import { hasUnsafeHtml, sanitizePlainText } from '../utils/sanitize';
 
 interface ChecklistModuleProps {
   items: ChecklistItem[];
@@ -39,6 +40,10 @@ export function ChecklistModule({
       setInputError('체크리스트 항목 내용을 입력해 주세요.');
       return;
     }
+    if (hasUnsafeHtml(trimmed)) {
+      setInputError('HTML 태그나 script 코드는 입력할 수 없습니다.');
+      return;
+    }
     const isDuplicate = items.some(
       (item) => item.text.trim().toLowerCase() === trimmed.toLowerCase()
     );
@@ -47,7 +52,7 @@ export function ChecklistModule({
       return;
     }
     setInputError('');
-    onAdd(trimmed, newCategory);
+    onAdd(sanitizePlainText(trimmed), newCategory);
     setNewText('');
   };
 
