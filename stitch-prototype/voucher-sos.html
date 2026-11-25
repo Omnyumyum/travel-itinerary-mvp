@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+
+<html lang="ko"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#f8f9ff;-webkit-tap-highlight-color:transparent;}body{overscroll-behavior-y:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "secondary": "#565e74", "on-tertiary-container": "#ffeedd", "on-primary-container": "#eeefff", "tertiary-container": "#996100", "surface": "#f8f9ff", "surface-container-lowest": "#ffffff", "on-tertiary-fixed": "#2a1700", "secondary-container": "#dae2fd", "on-surface-variant": "#434655", "secondary-fixed-dim": "#bec6e0", "tertiary-fixed-dim": "#ffb95f", "primary": "#004ac6", "inverse-on-surface": "#eaf1ff", "on-error-container": "#93000a", "surface-bright": "#f8f9ff", "tertiary-fixed": "#ffddb8", "error-container": "#ffdad6", "outline-variant": "#c3c6d7", "on-secondary-container": "#5c647a", "on-secondary-fixed": "#131b2e", "surface-container-low": "#eff4ff", "error": "#ba1a1a", "surface-variant": "#d3e4fe", "primary-fixed-dim": "#b4c5ff", "inverse-surface": "#213145", "on-tertiary": "#ffffff", "on-secondary-fixed-variant": "#3f465c", "on-tertiary-fixed-variant": "#653e00", "primary-fixed": "#dbe1ff", "on-secondary": "#ffffff", "surface-tint": "#0053db", "secondary-fixed": "#dae2fd", "tertiary": "#784b00", "on-primary": "#ffffff", "outline": "#737686", "surface-container-highest": "#d3e4fe", "surface-container-high": "#dce9ff", "primary-container": "#2563eb", "inverse-primary": "#b4c5ff", "on-surface": "#0b1c30", "on-error": "#ffffff", "on-primary-fixed": "#00174b", "on-background": "#0b1c30", "surface-dim": "#cbdbf5", "surface-container": "#e5eeff", "on-primary-fixed-variant": "#003ea8", "background": "#f8f9ff" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-sm": "0.5rem", "gutter": "1rem", "margin": "1rem", "space-lg": "1.25rem", "space-md": "1rem", "space-xl": "1.75rem", "space-xs": "0.25rem" }, fontFamily: { "headline-sm": ["Noto Sans"], "headline-lg-mobile": ["Noto Sans"], "body-md": ["Noto Sans"], "headline-md": ["Noto Sans"], "headline-lg": ["Noto Sans"], "label-sm": ["Noto Sans"], "label-md": ["Noto Sans"], "body-sm": ["Noto Sans"], "title-md": ["Noto Sans"], "body-lg": ["Noto Sans"] }, fontSize: { "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }], "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "700" }], "headline-lg": ["30px", { "lineHeight": "38px", "fontWeight": "700" }], "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "500" }], "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }], "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "title-md": ["16px", { "lineHeight": "22px", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }] } } } }</script><style>body { min-height: max(884px, 100dvh); }</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface text-on-surface antialiased flex flex-col min-h-screen"><div class="w-full max-w-[480px] mx-auto min-h-screen flex flex-col relative bg-surface"><header class="fixed top-0 w-full max-w-[480px] z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.03)] pt-safe"><div class="h-16 px-margin flex items-center justify-between"><div class="flex flex-col min-w-0 pr-space-xs"><div class="flex items-center gap-space-xs"><h1 class="font-title-md text-title-md text-on-surface truncate">도쿄 2박 3일 패키지 투어</h1><span class="px-1.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed font-label-sm text-label-sm whitespace-nowrap">2박 3일</span></div><p class="font-body-sm text-body-sm text-on-surface-variant truncate">2024.10.18 (금) - 10.20 (일) · 나리타 IN/OUT</p></div><div class="flex items-center gap-space-xs shrink-0"><button aria-label="일정 데이터 초기화" class="w-11 h-11 flex items-center justify-center rounded-full text-on-surface-variant hover:text-primary transition-colors active:scale-95" type="button"><span class="material-symbols-outlined text-[22px]">restart_alt</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col w-full px-margin pt-16 pb-24 bg-surface"><div class="flex flex-col w-full pb-24">
+<!-- Toast Notification -->
+<div class="fixed top-20 left-1/2 -translate-x-1/2 z-50 bg-inverse-surface text-inverse-on-surface px-space-md py-space-sm rounded-full font-label-md text-label-md flex items-center gap-space-xs shadow-xl opacity-0 pointer-events-none transition-all duration-300" id="toast">
+<span class="material-symbols-outlined text-[18px] text-tertiary-fixed">check_circle</span>
+<span id="toast-text">호텔 주소가 복사되었습니다.</span>
+</div>
+<!-- Section 1: Digital Voucher Wallet -->
+<section class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between mt-space-sm">
+<div class="flex items-center gap-space-xs">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">디지털 바우처 월렛</h2>
+<span class="px-2 py-0.5 rounded-full bg-primary-container text-on-primary font-label-sm text-label-sm">3건 보유</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">wifi_off</span>
+        오프라인 저장됨
+      </span>
+</div>
+<!-- Voucher Card 1: Flight -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-[0_4px_16px_-2px_rgba(15,23,42,0.06),0_2px_6px_-1px_rgba(15,23,42,0.04)] relative overflow-hidden flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="px-2 py-0.5 rounded-lg bg-surface-container-low text-primary font-label-md text-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">flight_takeoff</span>
+            항공권 e-티켓
+          </span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">대한항공 KE703</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed font-label-sm text-label-sm">24시간 전 자동체크인</span>
+</div>
+<div class="flex items-center justify-between py-space-xs">
+<div class="flex flex-col">
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">ICN</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">인천 T2 · 10:15</span>
+</div>
+<div class="flex-1 flex flex-col items-center px-space-md">
+<span class="font-label-sm text-label-sm text-on-surface-variant">2시간 25분</span>
+<div class="w-full flex items-center relative my-1">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<div class="flex-1 h-0.5 bg-surface-container-highest"></div>
+<span class="material-symbols-outlined text-primary text-[18px] mx-1">flight</span>
+<div class="flex-1 h-0.5 bg-surface-container-highest"></div>
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+</div>
+<span class="font-label-sm text-label-sm text-primary">직항</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">NRT</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">나리타 T1 · 12:40</span>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-space-sm flex items-center justify-between">
+<div class="flex items-center gap-space-md">
+<div>
+<span class="block font-label-sm text-label-sm text-on-surface-variant">예약번호</span>
+<span class="font-title-md text-title-md text-on-surface tracking-wide">KE-894210</span>
+</div>
+<div>
+<span class="block font-label-sm text-label-sm text-on-surface-variant">좌석</span>
+<span class="font-title-md text-title-md text-primary">28A (창가)</span>
+</div>
+</div>
+<button class="px-space-md py-2 bg-primary text-on-primary rounded-lg font-label-md text-label-md flex items-center gap-1 active:scale-95 transition-transform shadow-sm" onclick="openVoucherModal('flight')" type="button">
+<span class="material-symbols-outlined text-[16px]">qr_code_2</span>
+          QR 보기
+        </button>
+</div>
+</div>
+<!-- Voucher Card 2: Hotel -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-[0_4px_16px_-2px_rgba(15,23,42,0.06),0_2px_6px_-1px_rgba(15,23,42,0.04)] flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="px-2 py-0.5 rounded-lg bg-surface-container text-tertiary-container font-label-md text-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">hotel</span>
+            호텔 바우처
+          </span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">2박 조식포함</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed font-label-sm text-label-sm">예약확정</span>
+</div>
+<div class="flex flex-col">
+<h3 class="font-title-md text-title-md text-on-surface">신주쿠 워싱턴 호텔</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">본관 스탠다드 트윈룸 (금연실)</p>
+</div>
+<div class="grid grid-cols-2 gap-space-xs bg-surface-container-low rounded-lg p-space-sm">
+<div>
+<span class="block font-label-sm text-label-sm text-on-surface-variant">체크인</span>
+<span class="font-body-md text-body-md text-on-surface">10.18(금) 15:00</span>
+</div>
+<div>
+<span class="block font-label-sm text-label-sm text-on-surface-variant">체크아웃</span>
+<span class="font-body-md text-body-md text-on-surface">10.20(일) 11:00</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<div>
+<span class="block font-label-sm text-label-sm text-on-surface-variant">바우처 번호</span>
+<span class="font-title-md text-title-md text-on-surface">WH-2024-10189</span>
+</div>
+<button class="px-space-md py-2 bg-primary text-on-primary rounded-lg font-label-md text-label-md flex items-center gap-1 active:scale-95 transition-transform shadow-sm" onclick="openVoucherModal('hotel')" type="button">
+<span class="material-symbols-outlined text-[16px]">qr_code_2</span>
+          QR 보기
+        </button>
+</div>
+</div>
+<!-- Voucher Card 3: Shibuya Sky -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-[0_4px_16px_-2px_rgba(15,23,42,0.06),0_2px_6px_-1px_rgba(15,23,42,0.04)] flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="px-2 py-0.5 rounded-lg bg-surface-container-high text-primary font-label-md text-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">confirmation_number</span>
+            전망대 입장권
+          </span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">일몰 특별권</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-semibold">2일차 방문</span>
+</div>
+<div class="flex flex-col">
+<h3 class="font-title-md text-title-md text-on-surface">시부야 스카이 (SHIBUYA SKY)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">시부야 스크램블 스퀘어 45-47층 전망대</p>
+</div>
+<div class="flex items-center justify-between bg-surface-container-low rounded-lg p-space-sm">
+<div>
+<span class="block font-label-sm text-label-sm text-on-surface-variant">입장 시간</span>
+<span class="font-title-md text-title-md text-primary">10.19(토) 17:30</span>
+</div>
+<div class="text-right">
+<span class="block font-label-sm text-label-sm text-on-surface-variant">예약코드</span>
+<span class="font-body-md text-body-md text-on-surface">SBS-77491</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">성인 1인 · 시간엄수</span>
+<button class="px-space-md py-2 bg-primary text-on-primary rounded-lg font-label-md text-label-md flex items-center gap-1 active:scale-95 transition-transform shadow-sm" onclick="openVoucherModal('sky')" type="button">
+<span class="material-symbols-outlined text-[16px]">qr_code_2</span>
+          QR 보기
+        </button>
+</div>
+</div>
+</section>
+<!-- Section 2: Taxi & Hotel Driver Card (High-Contrast Amber Tone) -->
+<section class="flex flex-col gap-space-sm mt-space-xl">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-1">
+<span>현지어 택시 기사 카드</span>
+</h2>
+<span class="font-label-sm text-label-sm text-on-surface-variant">호텔 복귀 시 제시</span>
+</div>
+<!-- Taxi Driver Card -->
+<div class="bg-tertiary-fixed text-on-tertiary-fixed rounded-2xl p-space-lg shadow-[0_8px_24px_-4px_rgba(120,75,0,0.18)] flex flex-col gap-space-md relative overflow-hidden">
+<!-- Top Alert Badge -->
+<div class="flex items-center justify-between">
+<span class="px-2.5 py-1 rounded-full bg-on-tertiary-fixed text-tertiary-fixed font-label-md text-label-md inline-flex items-center gap-1">
+<span class="text-[14px]">🚖</span> 일본인 기사님께 바로 보여주세요
+        </span>
+<span class="material-symbols-outlined text-tertiary-container text-[26px]">local_taxi</span>
+</div>
+<!-- Large Japanese Text Content -->
+<div class="flex flex-col bg-surface-container-lowest/80 backdrop-blur-sm rounded-xl p-space-md">
+<span class="font-label-sm text-label-sm text-on-surface-variant mb-1">목적지 (Destination)</span>
+<p class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-on-surface tracking-tight leading-tight">
+          新宿ワシントンホテル
+        </p>
+<div class="h-0.5 w-full bg-secondary-fixed-dim/40 my-2"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant mb-0.5">상세 주소 (Address)</span>
+<p class="font-title-md text-title-md font-semibold text-on-surface select-all">
+          東京都新宿区西新宿3-2-9
+        </p>
+</div>
+<!-- Korean Guide -->
+<div class="px-1 flex flex-col">
+<p class="font-body-sm text-body-sm text-on-tertiary-fixed-variant">
+<span class="font-semibold text-on-tertiary-fixed">발음 안내:</span> "신주쿠 와싱톤 호테루마데 오네가이시마스"
+        </p>
+<p class="font-label-sm text-label-sm text-on-secondary-fixed-variant mt-0.5">
+          (신주쿠 워싱턴 호텔 / 도쿄도 신주쿠구 니시신주쿠 3-2-9)
+        </p>
+</div>
+<!-- Action Buttons -->
+<div class="grid grid-cols-2 gap-space-xs pt-space-xs">
+<button class="h-12 bg-on-tertiary-fixed text-surface-container-lowest rounded-xl font-label-md text-label-md flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition-all" onclick="openTaxiFullscreen()" type="button">
+<span class="material-symbols-outlined text-[18px]">zoom_in</span>
+          화면 전체 크게 보기
+        </button>
+<button class="h-12 bg-surface-container-lowest text-on-tertiary-fixed rounded-xl font-label-md text-label-md flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition-all" onclick="copyHotelAddress()" type="button">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+          주소 복사
+        </button>
+</div>
+</div>
+</section>
+<!-- Section 3: SOS Emergency Dial -->
+<section class="flex flex-col gap-space-md mt-space-xl">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">현지 비상연락망 (SOS)</h2>
+<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold">24시 대응</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">원터치 연결</span>
+</div>
+<!-- Tour Guide Priority Card -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-[0_4px_16px_-2px_rgba(15,23,42,0.06),0_2px_6px_-1px_rgba(15,23,42,0.04)] flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold font-title-md text-title-md">
+            김
+          </div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1">
+<span class="font-title-md text-title-md text-on-surface font-semibold">김민수 가이드</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container-high text-primary font-label-sm text-label-sm">도쿄 전담</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">+81-90-1234-5678</span>
+</div>
+</div>
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" title="통화 가능"></span>
+</div>
+<div class="grid grid-cols-2 gap-space-xs pt-1">
+<a class="h-11 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md flex items-center justify-center gap-1 active:scale-95 transition-transform shadow-sm" href="tel:+819012345678">
+<span class="material-symbols-outlined text-[18px]">call</span>
+          전화 걸기
+        </a>
+<a class="h-11 rounded-lg bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-center gap-1 active:scale-95 transition-transform" href="https://open.kakao.com" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[18px] text-tertiary-container">chat</span>
+          카톡 문의
+        </a>
+</div>
+</div>
+<!-- Emergency Services Dial Grid -->
+<div class="grid grid-cols-2 gap-space-xs">
+<!-- Police (110) -->
+<a class="bg-error-container text-on-error-container p-space-md rounded-xl flex flex-col justify-between shadow-sm active:scale-95 transition-transform" href="tel:110">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-[24px] text-error">local_police</span>
+<span class="px-2 py-0.5 rounded-full bg-error text-on-error font-label-sm text-label-sm font-bold">110</span>
+</div>
+<div class="mt-space-md">
+<span class="font-title-md text-title-md font-bold block">경찰 신고</span>
+<span class="font-body-sm text-body-sm opacity-90">사고·범죄·분실신고</span>
+</div>
+</a>
+<!-- Ambulance / Fire (119) -->
+<a class="bg-tertiary-fixed text-on-tertiary-fixed p-space-md rounded-xl flex flex-col justify-between shadow-sm active:scale-95 transition-transform" href="tel:119">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-[24px] text-tertiary">ambulance</span>
+<span class="px-2 py-0.5 rounded-full bg-tertiary text-on-tertiary font-label-sm text-label-sm font-bold">119</span>
+</div>
+<div class="mt-space-md">
+<span class="font-title-md text-title-md font-bold block">구급 · 소방</span>
+<span class="font-body-sm text-body-sm opacity-90">응급 환자·화재 발생</span>
+</div>
+</a>
+</div>
+<!-- Korean Embassy & MOFA Hotline -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-[0_4px_16px_-2px_rgba(15,23,42,0.06),0_2px_6px_-1px_rgba(15,23,42,0.04)] flex flex-col gap-space-md">
+<div class="flex items-start justify-between">
+<div>
+<h3 class="font-title-md text-title-md text-on-surface">주일 대한민국 대사관</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">도쿄 미나토구 소재 (관할 영사부)</p>
+</div>
+<span class="material-symbols-outlined text-[24px] text-primary">account_balance</span>
+</div>
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between p-space-sm bg-surface-container-low rounded-lg">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">영사과 비상전화 (주간)</span>
+<span class="font-body-md text-body-md text-on-surface font-semibold">+81-3-3452-7611</span>
+</div>
+<a class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary active:scale-95" href="tel:+81334527611">
+<span class="material-symbols-outlined text-[20px]">call</span>
+</a>
+</div>
+<div class="flex items-center justify-between p-space-sm bg-surface-container-low rounded-lg">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">24시간 긴급당직전화 (야간/휴일)</span>
+<span class="font-body-md text-body-md text-error font-semibold">+81-70-1234-5678</span>
+</div>
+<a class="w-10 h-10 rounded-full bg-error-container flex items-center justify-center text-error active:scale-95" href="tel:+817012345678">
+<span class="material-symbols-outlined text-[20px]">call</span>
+</a>
+</div>
+<div class="flex items-center justify-between p-space-sm bg-surface-container-low rounded-lg">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">외교부 영사콜센터 (한국어 무료)</span>
+<span class="font-body-md text-body-md text-on-surface font-semibold">+82-2-3210-0404</span>
+</div>
+<a class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary active:scale-95" href="tel:+82232100404">
+<span class="material-symbols-outlined text-[20px]">call</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Modal: QR Voucher Pop-up -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/60 backdrop-blur-sm flex items-end sm:items-center justify-center opacity-0 pointer-events-none transition-opacity duration-200" id="voucher-modal">
+<div class="w-full max-w-[440px] bg-surface-container-lowest rounded-t-2xl sm:rounded-2xl p-space-lg shadow-2xl transform translate-y-8 transition-transform duration-200 flex flex-col gap-space-md" id="voucher-modal-card">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">verified</span>
+<h3 class="font-title-md text-title-md text-on-surface" id="modal-title">바우처 확인</h3>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface-variant active:scale-90" onclick="closeVoucherModal()" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="flex flex-col items-center bg-surface-bright p-space-lg rounded-xl">
+<div class="w-52 h-52 bg-surface-container-lowest p-3 rounded-lg shadow-inner flex items-center justify-center relative">
+<!-- Stylized High-contrast QR vector -->
+<svg class="w-full h-full text-on-surface" fill="currentColor" viewbox="0 0 100 100">
+<!-- Corner marker TL -->
+<rect height="28" rx="2" width="28" x="5" y="5"></rect>
+<rect fill="#ffffff" height="20" rx="1" width="20" x="9" y="9"></rect>
+<rect height="12" rx="1" width="12" x="13" y="13"></rect>
+<!-- Corner marker TR -->
+<rect height="28" rx="2" width="28" x="67" y="5"></rect>
+<rect fill="#ffffff" height="20" rx="1" width="20" x="71" y="9"></rect>
+<rect height="12" rx="1" width="12" x="75" y="13"></rect>
+<!-- Corner marker BL -->
+<rect height="28" rx="2" width="28" x="5" y="67"></rect>
+<rect fill="#ffffff" height="20" rx="1" width="20" x="9" y="71"></rect>
+<rect height="12" rx="1" width="12" x="13" y="75"></rect>
+<!-- Pattern Data Dots -->
+<rect height="6" width="6" x="37" y="7"></rect>
+<rect height="6" width="6" x="47" y="7"></rect>
+<rect height="6" width="6" x="57" y="7"></rect>
+<rect height="6" width="6" x="37" y="17"></rect>
+<rect height="6" width="6" x="47" y="27"></rect>
+<rect height="6" width="6" x="7" y="37"></rect>
+<rect height="6" width="6" x="17" y="37"></rect>
+<rect height="6" width="6" x="27" y="37"></rect>
+<rect height="6" width="6" x="37" y="37"></rect>
+<rect height="6" width="6" x="47" y="37"></rect>
+<rect height="6" width="6" x="57" y="37"></rect>
+<rect height="6" width="6" x="67" y="37"></rect>
+<rect height="6" width="6" x="77" y="37"></rect>
+<rect height="6" width="6" x="87" y="37"></rect>
+<rect height="6" width="6" x="37" y="47"></rect>
+<rect height="6" width="6" x="57" y="47"></rect>
+<rect height="6" width="6" x="77" y="47"></rect>
+<rect height="6" width="6" x="7" y="57"></rect>
+<rect height="6" width="6" x="27" y="57"></rect>
+<rect height="6" width="6" x="47" y="57"></rect>
+<rect height="6" width="6" x="67" y="57"></rect>
+<rect height="6" width="6" x="87" y="57"></rect>
+<rect height="6" width="6" x="37" y="67"></rect>
+<rect height="6" width="6" x="57" y="67"></rect>
+<rect height="6" width="6" x="77" y="67"></rect>
+<rect height="6" width="6" x="47" y="77"></rect>
+<rect height="6" width="6" x="67" y="77"></rect>
+<rect height="6" width="6" x="87" y="77"></rect>
+<rect height="6" width="6" x="37" y="87"></rect>
+<rect height="6" width="6" x="57" y="87"></rect>
+<rect height="6" width="6" x="77" y="87"></rect>
+</svg>
+</div>
+<!-- Barcode Graphic -->
+<div class="mt-space-md w-full px-space-md flex flex-col items-center">
+<div class="h-10 w-full flex items-stretch justify-between gap-1 overflow-hidden py-1">
+<div class="w-1 bg-on-surface"></div>
+<div class="w-2 bg-on-surface"></div>
+<div class="w-0.5 bg-on-surface"></div>
+<div class="w-2 bg-on-surface"></div>
+<div class="w-1.5 bg-on-surface"></div>
+<div class="w-0.5 bg-on-surface"></div>
+<div class="w-3 bg-on-surface"></div>
+<div class="w-1 bg-on-surface"></div>
+<div class="w-2 bg-on-surface"></div>
+<div class="w-0.5 bg-on-surface"></div>
+<div class="w-1.5 bg-on-surface"></div>
+<div class="w-2 bg-on-surface"></div>
+<div class="w-1 bg-on-surface"></div>
+<div class="w-0.5 bg-on-surface"></div>
+<div class="w-2.5 bg-on-surface"></div>
+<div class="w-1 bg-on-surface"></div>
+<div class="w-3 bg-on-surface"></div>
+<div class="w-1 bg-on-surface"></div>
+</div>
+<span class="font-label-md text-label-md text-on-surface tracking-widest mt-1" id="modal-barcode-num">KE-894210</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-xs bg-surface-container-low rounded-xl p-space-md">
+<div>
+<span class="block font-label-sm text-label-sm text-on-surface-variant">예약자명</span>
+<span class="font-title-md text-title-md text-on-surface">홍길동 (HONG GILDONG)</span>
+</div>
+<div>
+<span class="block font-label-sm text-label-sm text-on-surface-variant">예약 식별코드</span>
+<span class="font-title-md text-title-md text-primary font-bold" id="modal-code">KE-894210</span>
+</div>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant text-center">
+        현장 리더기 또는 카운터 직원에게 위 화면을 직접 보여주세요.
+      </p>
+<button class="w-full h-12 bg-primary text-on-primary rounded-xl font-label-md text-label-md active:scale-95 transition-all shadow-sm" onclick="closeVoucherModal()" type="button">
+        닫기
+      </button>
+</div>
+</div>
+<!-- Interactive Modal: Taxi Fullscreen Pop-up -->
+<div class="fixed inset-0 z-50 bg-tertiary-fixed flex flex-col p-space-lg justify-between opacity-0 pointer-events-none transition-opacity duration-200" id="taxi-modal">
+<div class="flex items-center justify-between pt-safe">
+<span class="px-3 py-1 rounded-full bg-on-tertiary-fixed text-tertiary-fixed font-label-md text-label-md font-bold">
+        🚖 タクシー運転手様へ (기사님께)
+      </span>
+<button class="w-11 h-11 rounded-full bg-on-tertiary-fixed/10 text-on-tertiary-fixed flex items-center justify-center active:scale-90" onclick="closeTaxiFullscreen()" type="button">
+<span class="material-symbols-outlined text-[28px]">close</span>
+</button>
+</div>
+<div class="flex flex-col my-auto py-space-xl bg-surface-container-lowest rounded-2xl p-space-lg shadow-xl text-center">
+<span class="font-body-lg text-body-lg text-on-surface-variant mb-2">ここへ行ってください (여기로 가주세요)</span>
+<h1 class="font-headline-lg font-bold text-on-surface tracking-normal leading-tight break-keep mb-space-md">
+        新宿ワシントンホテル
+      </h1>
+<div class="w-full h-1 bg-tertiary-fixed rounded-full my-space-sm"></div>
+<p class="font-headline-sm text-headline-sm font-semibold text-on-surface mt-space-sm select-all">
+        東京都新宿区西新宿3-2-9
+      </p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">
+        (Shinjuku Washington Hotel)
+      </p>
+</div>
+<div class="flex flex-col gap-space-xs pb-safe">
+<button class="w-full h-14 bg-on-tertiary-fixed text-tertiary-fixed rounded-xl font-title-md text-title-md font-bold shadow-lg active:scale-95 transition-all" onclick="closeTaxiFullscreen()" type="button">
+        확인 완료 (화면 닫기)
+      </button>
+</div>
+</div>
+</div>
+<script>
+  // Voucher Modal Handler
+  function openVoucherModal(type) {
+    const modal = document.getElementById('voucher-modal');
+    const card = document.getElementById('voucher-modal-card');
+    const title = document.getElementById('modal-title');
+    const code = document.getElementById('modal-code');
+    const barcodeNum = document.getElementById('modal-barcode-num');
+
+    if (type === 'flight') {
+      title.innerText = '항공 탑승권 바우처 (대한항공)';
+      code.innerText = 'KE-894210';
+      barcodeNum.innerText = 'KE-894210';
+    } else if (type === 'hotel') {
+      title.innerText = '호텔 투숙 바우처 (신주쿠 워싱턴)';
+      code.innerText = 'WH-2024-10189';
+      barcodeNum.innerText = 'WH-2024-10189';
+    } else if (type === 'sky') {
+      title.innerText = '시부야 스카이 모바일 입장권';
+      code.innerText = 'SBS-77491';
+      barcodeNum.innerText = 'SBS-77491';
+    }
+
+    modal.classList.remove('opacity-0', 'pointer-events-none');
+    card.classList.remove('translate-y-8');
+  }
+
+  function closeVoucherModal() {
+    const modal = document.getElementById('voucher-modal');
+    const card = document.getElementById('voucher-modal-card');
+    modal.classList.add('opacity-0', 'pointer-events-none');
+    card.classList.add('translate-y-8');
+  }
+
+  // Taxi Fullscreen Modal Handler
+  function openTaxiFullscreen() {
+    const taxiModal = document.getElementById('taxi-modal');
+    taxiModal.classList.remove('opacity-0', 'pointer-events-none');
+  }
+
+  function closeTaxiFullscreen() {
+    const taxiModal = document.getElementById('taxi-modal');
+    taxiModal.classList.add('opacity-0', 'pointer-events-none');
+  }
+
+  // Address Copy Handler with Toast
+  function copyHotelAddress() {
+    const address = "東京都新宿区西新宿3-2-9 (新宿ワシントンホテル)";
+    navigator.clipboard.writeText(address).then(() => {
+      showToast("호텔 주소가 클립보드에 복사되었습니다.");
+    }).catch(() => {
+      showToast("주소 복사 완료: 東京都新宿区西新宿3-2-9");
+    });
+  }
+
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    const toastText = document.getElementById('toast-text');
+    toastText.innerText = msg;
+    toast.classList.remove('opacity-0', 'pointer-events-none');
+    toast.classList.add('-translate-y-1');
+
+    setTimeout(() => {
+      toast.classList.add('opacity-0', 'pointer-events-none');
+      toast.classList.remove('-translate-y-1');
+    }, 2400);
+  }
+</script></main><nav class="fixed bottom-0 w-full max-w-[480px] z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-4px_16px_rgba(15,23,42,0.06)]" data-active-classes="text-primary-container font-semibold"><div class="h-16 px-space-md grid grid-cols-3 items-center"><a class="flex flex-col items-center justify-center h-full gap-0.5 text-on-surface-variant hover:text-primary transition-all active:scale-95" data-path="itinerary" href="#"><span class="material-symbols-outlined text-[24px]">calendar_clock</span><span class="font-label-md text-label-md">일정</span></a><a class="flex flex-col items-center justify-center h-full gap-0.5 text-on-surface-variant hover:text-primary transition-all active:scale-95" data-path="checklist" href="#"><span class="material-symbols-outlined text-[24px]">checklist</span><span class="font-label-md text-label-md">체크리스트</span></a><a class="flex flex-col items-center justify-center h-full gap-0.5 text-primary-container font-semibold transition-all active:scale-95 relative" data-path="voucher-sos" href="#"><span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">shield_with_heart</span><span class="font-label-md text-label-md">바우처·SOS</span><span class="w-1 h-1 rounded-full bg-primary-container absolute bottom-1.5"></span></a></div></nav></div></body></html>

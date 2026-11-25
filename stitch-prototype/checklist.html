@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+<html lang="ko"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#f8f9ff;-webkit-tap-highlight-color:transparent;}body{overscroll-behavior-y:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "secondary": "#565e74", "on-tertiary-container": "#ffeedd", "on-primary-container": "#eeefff", "tertiary-container": "#996100", "surface": "#f8f9ff", "surface-container-lowest": "#ffffff", "on-tertiary-fixed": "#2a1700", "secondary-container": "#dae2fd", "on-surface-variant": "#434655", "secondary-fixed-dim": "#bec6e0", "tertiary-fixed-dim": "#ffb95f", "primary": "#004ac6", "inverse-on-surface": "#eaf1ff", "on-error-container": "#93000a", "surface-bright": "#f8f9ff", "tertiary-fixed": "#ffddb8", "error-container": "#ffdad6", "outline-variant": "#c3c6d7", "on-secondary-container": "#5c647a", "on-secondary-fixed": "#131b2e", "surface-container-low": "#eff4ff", "error": "#ba1a1a", "surface-variant": "#d3e4fe", "primary-fixed-dim": "#b4c5ff", "inverse-surface": "#213145", "on-tertiary": "#ffffff", "on-secondary-fixed-variant": "#3f465c", "on-tertiary-fixed-variant": "#653e00", "primary-fixed": "#dbe1ff", "on-secondary": "#ffffff", "surface-tint": "#0053db", "secondary-fixed": "#dae2fd", "tertiary": "#784b00", "on-primary": "#ffffff", "outline": "#737686", "surface-container-highest": "#d3e4fe", "surface-container-high": "#dce9ff", "primary-container": "#2563eb", "inverse-primary": "#b4c5ff", "on-surface": "#0b1c30", "on-error": "#ffffff", "on-primary-fixed": "#00174b", "on-background": "#0b1c30", "surface-dim": "#cbdbf5", "surface-container": "#e5eeff", "on-primary-fixed-variant": "#003ea8", "background": "#f8f9ff" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-sm": "0.5rem", "gutter": "1rem", "margin": "1rem", "space-lg": "1.25rem", "space-md": "1rem", "space-xl": "1.75rem", "space-xs": "0.25rem" }, fontFamily: { "headline-sm": ["Noto Sans"], "headline-lg-mobile": ["Noto Sans"], "body-md": ["Noto Sans"], "headline-md": ["Noto Sans"], "headline-lg": ["Noto Sans"], "label-sm": ["Noto Sans"], "label-md": ["Noto Sans"], "body-sm": ["Noto Sans"], "title-md": ["Noto Sans"], "body-lg": ["Noto Sans"] }, fontSize: { "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }], "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "700" }], "headline-lg": ["30px", { "lineHeight": "38px", "fontWeight": "700" }], "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "500" }], "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }], "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "title-md": ["16px", { "lineHeight": "22px", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }] } } } }</script><style>body{min-height:max(884px,100dvh);}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface text-on-surface antialiased flex flex-col min-h-screen"><div class="w-full max-w-[480px] mx-auto min-h-screen flex flex-col relative bg-surface"><header class="fixed top-0 w-full max-w-[480px] z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.03)] pt-safe"><div class="h-24 flex flex-col justify-between"><div class="h-14 px-margin flex items-center justify-between"><div class="flex flex-col min-w-0 pr-space-xs"><div class="flex items-center gap-space-xs"><h1 class="font-title-md text-title-md text-on-surface truncate">Tokyo Checklist</h1><span class="px-1.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed font-label-sm text-label-sm whitespace-nowrap">2박 3일</span></div><p class="font-body-sm text-body-sm text-on-surface-variant truncate">2024.10.18 (금) - 10.20 (일) · 나리타 IN/OUT</p></div><div class="flex items-center gap-1 shrink-0"><button aria-label="일정 데이터 초기화" class="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:text-primary transition-colors active:scale-95" type="button"><span class="material-symbols-outlined text-[22px]">restart_alt</span></button><button aria-label="사용자 프로필" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 active:scale-95 transition-transform" type="button"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></button></div></div><div class="h-10 px-margin bg-tertiary-fixed/30 flex items-center justify-between text-on-tertiary-fixed gap-2"><div class="flex items-center gap-1.5 min-w-0"><span class="material-symbols-outlined text-[18px] text-tertiary shrink-0 animate-pulse">campaign</span><span class="font-label-md text-label-md text-tertiary font-bold shrink-0">인솔자 공지</span><span class="font-body-sm text-body-sm text-on-surface truncate">금일 17:30 신주쿠 호텔 로비 집합 시간 준수 바랍니다.</span></div><span class="material-symbols-outlined text-[16px] text-on-tertiary-fixed-variant shrink-0">chevron_right</span></div></div></header><main class="flex-1 flex flex-col w-full px-margin pt-24 pb-24 bg-surface"><div class="flex flex-col w-full gap-space-md" id="checklist-app">
+<!-- 긴급 공지 배너 (Warm Amber Card) -->
+<section class="w-full bg-tertiary-fixed/40 rounded-xl p-space-md shadow-sm relative overflow-hidden">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-start gap-space-sm min-w-0">
+<div class="relative shrink-0 mt-0.5">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[18px]">campaign</span>
+</div>
+<!-- 파란 알림 점 -->
+<span class="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-primary-container rounded-full ring-2 ring-surface"></span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="px-2 py-0.5 rounded-full bg-tertiary-container/15 text-tertiary font-label-sm text-label-sm font-bold tracking-tight">인솔자 긴급 공지</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm opacity-70">방금 전</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface font-medium leading-relaxed" id="notice-text">
+            내일 조식은 07:30 2층 레스토랑, 전용 버스 탑승은 08:30 로비 집합입니다.
+          </p>
+</div>
+</div>
+<button class="shrink-0 px-2.5 py-1.5 rounded-lg bg-surface-container-lowest text-tertiary hover:bg-tertiary-fixed/30 active:scale-95 transition-all text-label-sm font-label-md shadow-sm flex items-center gap-0.5" onclick="editNotice()" type="button">
+<span class="material-symbols-outlined text-[15px]">edit</span>
+<span>수정</span>
+</button>
+</div>
+</section>
+<!-- 진행률 시각화 카드 (Progress Bento Card) -->
+<section class="w-full bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-1.5">
+<div class="w-2 h-4 rounded-full bg-primary-container"></div>
+<h2 class="font-title-md text-title-md text-on-surface">투어 준비 및 인원 체크</h2>
+</div>
+<span class="font-label-md text-label-md text-primary-container font-bold bg-secondary-container/40 px-2.5 py-1 rounded-full" id="progress-badge">
+        60% · 3/5 완료
+      </span>
+</div>
+<!-- 게이지 바 -->
+<div class="w-full bg-surface-container rounded-full h-2.5 overflow-hidden my-2.5">
+<div class="bg-primary-container h-full rounded-full transition-all duration-500 ease-out" id="progress-bar-fill" style="width: 60%"></div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant pt-0.5">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">verified_user</span>
+<span class="font-body-sm text-body-sm" id="progress-desc">출발 전 필수 항목 2개가 남아있습니다.</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">실시간 동기화</span>
+</div>
+</section>
+<!-- 필터 탭 (Pill Filter Chips) -->
+<div class="flex items-center gap-2 overflow-x-auto pb-0.5">
+<button class="px-3.5 py-1.5 rounded-full font-label-md text-label-md transition-all active:scale-95 bg-primary-container text-on-primary font-bold shadow-sm" id="filter-all" onclick="filterItems('all')" type="button">
+      전체 <span class="opacity-90 ml-0.5" id="count-all">5</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-full font-label-md text-label-md transition-all active:scale-95 bg-surface-container text-on-surface-variant hover:bg-surface-container-high" id="filter-supplies" onclick="filterItems('supplies')" type="button">
+      준비물 <span class="opacity-80 ml-0.5" id="count-supplies">4</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-full font-label-md text-label-md transition-all active:scale-95 bg-surface-container text-on-surface-variant hover:bg-surface-container-high" id="filter-attendance" onclick="filterItems('attendance')" type="button">
+      출석/인원 <span class="opacity-80 ml-0.5" id="count-attendance">1</span>
+</button>
+</div>
+<!-- 새 항목 추가 입력 영역 (Input Card) -->
+<section class="w-full bg-surface-container-lowest rounded-xl p-space-sm shadow-sm flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<div class="relative shrink-0">
+<select class="appearance-none bg-surface-container-low text-on-surface font-label-md text-label-md py-2.5 pl-3 pr-7 rounded-lg focus:outline-none focus:bg-surface-container transition-colors cursor-pointer" id="new-category">
+<option value="supplies">준비물</option>
+<option value="attendance">출석</option>
+</select>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant absolute right-2 top-3 pointer-events-none">expand_more</span>
+</div>
+<input class="flex-1 bg-surface-container-low text-on-surface font-body-sm text-body-sm px-3 py-2 rounded-lg placeholder:text-outline focus:outline-none focus:bg-surface-container transition-colors" id="new-item-input" onkeydown="if(event.key==='Enter') addItem()" placeholder="새 준비물 또는 인원 항목 추가..." type="text"/>
+<button class="shrink-0 h-9 px-3.5 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md font-semibold flex items-center justify-center gap-1 active:scale-95 shadow-sm hover:opacity-95 transition-all" onclick="addItem()" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>추가</span>
+</button>
+</div>
+</section>
+<!-- 체크리스트 항목 카드 리스트 -->
+<div class="flex flex-col gap-2.5" id="checklist-container">
+<!-- 항목 1: [체크됨] 여권 및 e-티켓 지참 -->
+<div class="checklist-item w-full bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex items-start justify-between gap-3 transition-all hover:bg-surface-container-low/60" data-category="supplies" data-completed="true">
+<div class="flex items-start gap-3 min-w-0 cursor-pointer select-none" onclick="toggleItem(this)">
+<button class="check-toggle shrink-0 w-6 h-6 rounded-full bg-primary-container flex items-center justify-center text-on-primary mt-0.5 active:scale-90 transition-transform shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</button>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5 mb-1 flex-wrap">
+<span class="px-2 py-0.5 rounded-md bg-secondary-container text-on-secondary-fixed font-label-sm text-label-sm font-semibold">준비물</span>
+<h3 class="item-title font-title-md text-title-md line-through text-outline truncate transition-colors">여권 및 e-티켓 지참</h3>
+</div>
+<p class="item-memo font-body-sm text-body-sm text-outline">유효기간 6개월 이상 확인 완료</p>
+</div>
+</div>
+<button aria-label="항목 삭제" class="shrink-0 w-8 h-8 rounded-lg text-outline hover:text-error hover:bg-error-container/20 flex items-center justify-center transition-colors active:scale-95" onclick="deleteItem(this)" type="button">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+<!-- 항목 2: [체크됨] 일본 eSIM / 로밍 개통 확인 -->
+<div class="checklist-item w-full bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex items-start justify-between gap-3 transition-all hover:bg-surface-container-low/60" data-category="supplies" data-completed="true">
+<div class="flex items-start gap-3 min-w-0 cursor-pointer select-none" onclick="toggleItem(this)">
+<button class="check-toggle shrink-0 w-6 h-6 rounded-full bg-primary-container flex items-center justify-center text-on-primary mt-0.5 active:scale-90 transition-transform shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</button>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5 mb-1 flex-wrap">
+<span class="px-2 py-0.5 rounded-md bg-secondary-container text-on-secondary-fixed font-label-sm text-label-sm font-semibold">준비물</span>
+<h3 class="item-title font-title-md text-title-md line-through text-outline truncate transition-colors">일본 eSIM / 로밍 개통 확인</h3>
+</div>
+<p class="item-memo font-body-sm text-body-sm text-outline">QR코드 캡처 및 설치 완료</p>
+</div>
+</div>
+<button aria-label="항목 삭제" class="shrink-0 w-8 h-8 rounded-lg text-outline hover:text-error hover:bg-error-container/20 flex items-center justify-center transition-colors active:scale-95" onclick="deleteItem(this)" type="button">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+<!-- 항목 3: [체크됨] 110V 돼지코 어댑터 & 멀티탭 -->
+<div class="checklist-item w-full bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex items-start justify-between gap-3 transition-all hover:bg-surface-container-low/60" data-category="supplies" data-completed="true">
+<div class="flex items-start gap-3 min-w-0 cursor-pointer select-none" onclick="toggleItem(this)">
+<button class="check-toggle shrink-0 w-6 h-6 rounded-full bg-primary-container flex items-center justify-center text-on-primary mt-0.5 active:scale-90 transition-transform shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</button>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5 mb-1 flex-wrap">
+<span class="px-2 py-0.5 rounded-md bg-secondary-container text-on-secondary-fixed font-label-sm text-label-sm font-semibold">준비물</span>
+<h3 class="item-title font-title-md text-title-md line-through text-outline truncate transition-colors">110V 돼지코 어댑터 &amp; 멀티탭</h3>
+</div>
+<p class="item-memo font-body-sm text-body-sm text-outline">기내 반입 보조배터리 분리 완료</p>
+</div>
+</div>
+<button aria-label="항목 삭제" class="shrink-0 w-8 h-8 rounded-lg text-outline hover:text-error hover:bg-error-container/20 flex items-center justify-center transition-colors active:scale-95" onclick="deleteItem(this)" type="button">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+<!-- 항목 4: [미체크] 투어 인원 공항 미팅 출석 확인 -->
+<div class="checklist-item w-full bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex items-start justify-between gap-3 transition-all hover:bg-surface-container-low/60" data-category="attendance" data-completed="false">
+<div class="flex items-start gap-3 min-w-0 cursor-pointer select-none" onclick="toggleItem(this)">
+<button class="check-toggle shrink-0 w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-transparent mt-0.5 active:scale-90 transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</button>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5 mb-1 flex-wrap">
+<span class="px-2 py-0.5 rounded-md bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-bold">출석</span>
+<h3 class="item-title font-title-md text-title-md text-on-surface font-bold truncate transition-colors">투어 인원 공항 미팅 출석 확인</h3>
+</div>
+<p class="item-memo font-body-sm text-body-sm text-on-surface-variant font-medium">인솔자 김민준 가이드 미팅 (N카운터)</p>
+</div>
+</div>
+<button aria-label="항목 삭제" class="shrink-0 w-8 h-8 rounded-lg text-outline hover:text-error hover:bg-error-container/20 flex items-center justify-center transition-colors active:scale-95" onclick="deleteItem(this)" type="button">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+<!-- 항목 5: [미체크] 개인 상비약 및 엔화 환전/트래블로그 카드 -->
+<div class="checklist-item w-full bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex items-start justify-between gap-3 transition-all hover:bg-surface-container-low/60" data-category="supplies" data-completed="false">
+<div class="flex items-start gap-3 min-w-0 cursor-pointer select-none" onclick="toggleItem(this)">
+<button class="check-toggle shrink-0 w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-transparent mt-0.5 active:scale-90 transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</button>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5 mb-1 flex-wrap">
+<span class="px-2 py-0.5 rounded-md bg-secondary-container text-on-secondary-fixed font-label-sm text-label-sm font-semibold">준비물</span>
+<h3 class="item-title font-title-md text-title-md text-on-surface truncate transition-colors">개인 상비약 및 엔화 환전/트래블로그 카드</h3>
+</div>
+<p class="item-memo font-body-sm text-body-sm text-on-surface-variant">소화제, 두통약, 동전 지갑 준비</p>
+</div>
+</div>
+<button aria-label="항목 삭제" class="shrink-0 w-8 h-8 rounded-lg text-outline hover:text-error hover:bg-error-container/20 flex items-center justify-center transition-colors active:scale-95" onclick="deleteItem(this)" type="button">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+<!-- 인솔자 직통 비상 배너 -->
+<section class="w-full bg-surface-container-high rounded-xl p-space-md shadow-sm mt-1">
+<div class="flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">support_agent</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-primary font-bold">도쿄 전담 인솔 가이드</span>
+<span class="font-title-md text-title-md text-on-surface truncate">김민준 가이드 직통</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">+81 80-1234-5678</span>
+</div>
+</div>
+<div class="flex items-center gap-1.5 shrink-0">
+<a aria-label="가이드 전화하기" class="w-9 h-9 rounded-full bg-primary-container text-on-primary flex items-center justify-center active:scale-95 transition-transform shadow-sm" href="tel:+818012345678">
+<span class="material-symbols-outlined text-[18px]">call</span>
+</a>
+<button aria-label="가이드 톡 문의" class="w-9 h-9 rounded-full bg-surface-container-lowest text-on-surface-variant hover:text-primary flex items-center justify-center active:scale-95 transition-transform shadow-sm" onclick="alert('가이드 1:1 대화방으로 연결됩니다.')" type="button">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+<script>
+  let currentFilter = 'all';
+
+  function updateProgress() {
+    const allItems = document.querySelectorAll('.checklist-item');
+    const completedItems = document.querySelectorAll('.checklist-item[data-completed="true"]');
+    const total = allItems.length;
+    const completed = completedItems.length;
+    const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
+    const remaining = total - completed;
+
+    // 프로그레스 바 & 라벨
+    const bar = document.getElementById('progress-bar-fill');
+    const badge = document.getElementById('progress-badge');
+    const desc = document.getElementById('progress-desc');
+
+    if (bar) bar.style.width = percent + '%';
+    if (badge) badge.textContent = `${percent}% · ${completed}/${total} 완료`;
+    if (desc) {
+      if (remaining > 0) {
+        desc.textContent = `출발 전 필수 항목 ${remaining}개가 남아있습니다.`;
+      } else {
+        desc.textContent = `모든 준비와 점검이 완료되었습니다! 안전한 여행 되세요.`;
+      }
+    }
+
+    // 카운터 뱃지 갱신
+    const suppliesTotal = document.querySelectorAll('.checklist-item[data-category="supplies"]').length;
+    const attendanceTotal = document.querySelectorAll('.checklist-item[data-category="attendance"]').length;
+
+    const countAll = document.getElementById('count-all');
+    const countSupplies = document.getElementById('count-supplies');
+    const countAttendance = document.getElementById('count-attendance');
+
+    if (countAll) countAll.textContent = total;
+    if (countSupplies) countSupplies.textContent = suppliesTotal;
+    if (countAttendance) countAttendance.textContent = attendanceTotal;
+  }
+
+  function toggleItem(containerEl) {
+    const parent = containerEl.closest('.checklist-item');
+    if (!parent) return;
+
+    const isCompleted = parent.getAttribute('data-completed') === 'true';
+    const nextState = !isCompleted;
+    parent.setAttribute('data-completed', nextState ? 'true' : 'false');
+
+    const checkBtn = parent.querySelector('.check-toggle');
+    const title = parent.querySelector('.item-title');
+    const memo = parent.querySelector('.item-memo');
+
+    if (nextState) {
+      checkBtn.className = 'check-toggle shrink-0 w-6 h-6 rounded-full bg-primary-container flex items-center justify-center text-on-primary mt-0.5 active:scale-90 transition-transform shadow-sm';
+      title.classList.add('line-through', 'text-outline');
+      title.classList.remove('text-on-surface', 'font-bold');
+      if (memo) memo.classList.add('text-outline');
+    } else {
+      checkBtn.className = 'check-toggle shrink-0 w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-transparent mt-0.5 active:scale-90 transition-transform';
+      title.classList.remove('line-through', 'text-outline');
+      title.classList.add('text-on-surface');
+      if (parent.getAttribute('data-category') === 'attendance') {
+        title.classList.add('font-bold');
+      }
+      if (memo) memo.classList.remove('text-outline');
+    }
+
+    updateProgress();
+  }
+
+  function deleteItem(btn) {
+    const card = btn.closest('.checklist-item');
+    if (!card) return;
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(-6px)';
+    setTimeout(() => {
+      card.remove();
+      updateProgress();
+    }, 200);
+  }
+
+  function filterItems(category) {
+    currentFilter = category;
+    const buttons = {
+      all: document.getElementById('filter-all'),
+      supplies: document.getElementById('filter-supplies'),
+      attendance: document.getElementById('filter-attendance')
+    };
+
+    Object.keys(buttons).forEach(key => {
+      const btn = buttons[key];
+      if (!btn) return;
+      if (key === category) {
+        btn.className = 'px-3.5 py-1.5 rounded-full font-label-md text-label-md transition-all active:scale-95 bg-primary-container text-on-primary font-bold shadow-sm';
+      } else {
+        btn.className = 'px-3.5 py-1.5 rounded-full font-label-md text-label-md transition-all active:scale-95 bg-surface-container text-on-surface-variant hover:bg-surface-container-high';
+      }
+    });
+
+    const items = document.querySelectorAll('.checklist-item');
+    items.forEach(item => {
+      if (category === 'all' || item.getAttribute('data-category') === category) {
+        item.style.display = 'flex';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+
+  function addItem() {
+    const input = document.getElementById('new-item-input');
+    const select = document.getElementById('new-category');
+    if (!input || !input.value.trim()) {
+      if (input) input.focus();
+      return;
+    }
+
+    const titleText = input.value.trim();
+    const category = select.value;
+    const isAttendance = category === 'attendance';
+    const tagBg = isAttendance ? 'bg-tertiary-fixed text-on-tertiary-fixed font-bold' : 'bg-secondary-container text-on-secondary-fixed font-semibold';
+    const tagLabel = isAttendance ? '출석' : '준비물';
+
+    const newItemHtml = `
+      <div data-category="${category}" data-completed="false" class="checklist-item w-full bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex items-start justify-between gap-3 transition-all hover:bg-surface-container-low/60">
+        <div class="flex items-start gap-3 min-w-0 cursor-pointer select-none" onclick="toggleItem(this)">
+          <button type="button" class="check-toggle shrink-0 w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-transparent mt-0.5 active:scale-90 transition-transform">
+            <span class="material-symbols-outlined text-[18px]">check</span>
+          </button>
+          <div class="flex flex-col min-w-0">
+            <div class="flex items-center gap-1.5 mb-1 flex-wrap">
+              <span class="px-2 py-0.5 rounded-md ${tagBg} font-label-sm text-label-sm">${tagLabel}</span>
+              <h3 class="item-title font-title-md text-title-md text-on-surface truncate transition-colors ${isAttendance ? 'font-bold' : ''}">${titleText}</h3>
+            </div>
+            <p class="item-memo font-body-sm text-body-sm text-on-surface-variant">사용자 직접 추가 항목</p>
+          </div>
+        </div>
+        <button type="button" onclick="deleteItem(this)" class="shrink-0 w-8 h-8 rounded-lg text-outline hover:text-error hover:bg-error-container/20 flex items-center justify-center transition-colors active:scale-95" aria-label="항목 삭제">
+          <span class="material-symbols-outlined text-[20px]">delete</span>
+        </button>
+      </div>
+    `;
+
+    const container = document.getElementById('checklist-container');
+    container.insertAdjacentHTML('afterbegin', newItemHtml);
+    input.value = '';
+    
+    // 필터 상태 유지 적용
+    filterItems(currentFilter);
+    updateProgress();
+  }
+
+  function editNotice() {
+    const noticeEl = document.getElementById('notice-text');
+    if (!noticeEl) return;
+    const current = noticeEl.textContent.trim();
+    const updated = prompt('수정할 인솔자 긴급 공지 내용을 입력하세요:', current);
+    if (updated !== null && updated.trim() !== '') {
+      noticeEl.textContent = updated.trim();
+    }
+  }
+
+  // 초기 렌더링 동기화
+  document.addEventListener('DOMContentLoaded', () => {
+    updateProgress();
+  });
+</script></main><nav class="fixed bottom-0 w-full max-w-[480px] z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-4px_16px_rgba(15,23,42,0.06)]" data-active-classes="text-primary-container font-semibold"><div class="h-16 px-space-md grid grid-cols-3 items-center"><a class="flex flex-col items-center justify-center h-full gap-0.5 text-on-surface-variant hover:text-primary transition-all active:scale-95" data-path="tokyo-itinerary" href="#"><span class="material-symbols-outlined text-[24px]">calendar_clock</span><span class="font-label-md text-label-md">일정</span></a><a aria-current="page" class="flex flex-col items-center justify-center h-full gap-0.5 transition-all active:scale-95 text-primary-container font-semibold" data-path="tokyo-checklist" href="#"><span class="material-symbols-outlined text-[24px]">checklist</span><span class="font-label-md text-label-md">체크리스트</span></a><a class="flex flex-col items-center justify-center h-full gap-0.5 text-on-surface-variant hover:text-primary transition-all active:scale-95" data-path="tokyo-voucher-sos" href="#"><span class="material-symbols-outlined text-[24px]">shield_with_heart</span><span class="font-label-md text-label-md">바우처·SOS</span></a></div></nav></div></body></html>
