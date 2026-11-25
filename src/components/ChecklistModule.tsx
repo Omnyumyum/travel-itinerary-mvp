@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { Plus, Trash2, Check, ListChecks } from 'lucide-react';
 import type { ChecklistCategory, ChecklistItem } from '../types';
+import { hasUnsafeHtml, sanitizePlainText } from '../utils/sanitize';
 
 interface ChecklistModuleProps {
   items: ChecklistItem[];
@@ -20,6 +21,7 @@ export function ChecklistModule({
   const [newText, setNewText] = useState('');
   const [newCategory, setNewCategory] = useState<ChecklistCategory>('준비물');
   const [filter, setFilter] = useState<FilterType>('전체');
+  const [inputError, setInputError] = useState('');
 
   const completedCount = items.filter((item) => item.completed).length;
   const totalCount = items.length;
@@ -33,8 +35,24 @@ export function ChecklistModule({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newText.trim()) return;
-    onAdd(newText.trim(), newCategory);
+    const trimmed = newText.trim();
+    if (!trimmed) {
+      setInputError('체크리스트 항목 내용을 입력해 주세요.');
+      return;
+    }
+    if (hasUnsafeHtml(trimmed)) {
+      setInputError('HTML 태그나 script 코드는 입력할 수 없습니다.');
+      return;
+    }
+    const isDuplicate = items.some(
+      (item) => item.text.trim().toLowerCase() === trimmed.toLowerCase()
+    );
+    if (isDuplicate) {
+      setInputError('이미 등록된 동일한 항목이 있습니다.');
+      return;
+    }
+    setInputError('');
+    onAdd(sanitizePlainText(trimmed), newCategory);
     setNewText('');
   };
 
@@ -95,7 +113,10 @@ export function ChecklistModule({
             <input
               type="text"
               value={newText}
-              onChange={(e) => setNewText(e.target.value)}
+              onChange={(e) => {
+                setNewText(e.target.value);
+                if (inputError) setInputError('');
+              }}
               placeholder="새 준비물 또는 인원 체크 항목 입력..."
               className="flex-1 min-w-0 px-3 py-2.5 rounded-xl border border-outline-variant bg-surface text-[13px] focus:outline-none focus:ring-2 focus:ring-primary-container"
             />
@@ -107,6 +128,9 @@ export function ChecklistModule({
               추가
             </button>
           </div>
+          {inputError && (
+            <p className="text-[12px] font-medium text-error">{inputError}</p>
+          )}
         </form>
       </section>
 

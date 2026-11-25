@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { RotateCcw, Pencil, Compass, X, Check } from 'lucide-react';
 import type { TripMeta } from '../types';
+import { hasUnsafeHtml, sanitizePlainText } from '../utils/sanitize';
 
 interface HeaderProps {
   tripMeta: TripMeta;
@@ -13,22 +14,41 @@ export function Header({ tripMeta, onUpdateTripMeta, onResetAll }: HeaderProps) 
   const [title, setTitle] = useState(tripMeta.title);
   const [durationBadge, setDurationBadge] = useState(tripMeta.durationBadge);
   const [subtitle, setSubtitle] = useState(tripMeta.subtitle);
+  const [error, setError] = useState('');
 
   const openEdit = () => {
     setTitle(tripMeta.title);
     setDurationBadge(tripMeta.durationBadge);
     setSubtitle(tripMeta.subtitle);
+    setError('');
     setIsEditingTrip(true);
   };
 
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!title.trim()) return;
+    const trimmedTitle = title.trim();
+    if (!trimmedTitle) {
+      setError('여행 제목을 입력해 주세요.');
+      return;
+    }
+    if (trimmedTitle.length > 40) {
+      setError('여행 제목은 40자 이내로 입력해 주세요.');
+      return;
+    }
+    if (
+      hasUnsafeHtml(trimmedTitle) ||
+      hasUnsafeHtml(durationBadge) ||
+      hasUnsafeHtml(subtitle)
+    ) {
+      setError('HTML 태그나 script 코드는 입력할 수 없습니다.');
+      return;
+    }
+    setError('');
     onUpdateTripMeta({
       ...tripMeta,
-      title: title.trim(),
-      durationBadge: durationBadge.trim() || '여행',
-      subtitle: subtitle.trim() || '가이드 & 여행객 통합 관리',
+      title: sanitizePlainText(trimmedTitle),
+      durationBadge: sanitizePlainText(durationBadge) || '여행',
+      subtitle: sanitizePlainText(subtitle) || '가이드 & 여행객 통합 관리',
     });
     setIsEditingTrip(false);
   };
@@ -104,11 +124,16 @@ export function Header({ tripMeta, onUpdateTripMeta, onResetAll }: HeaderProps) 
                 <input
                   type="text"
                   value={title}
-                  onChange={(e) => setTitle(e.target.value)}
+                  onChange={(e) => {
+                    setTitle(e.target.value);
+                    if (error) setError('');
+                  }}
                   placeholder="예: 오사카 3박 4일 가족 여행"
                   className="w-full px-3 py-2.5 rounded-xl border border-outline-variant bg-surface-container-lowest text-[14px] focus:outline-none focus:ring-2 focus:ring-primary-container"
-                  required
                 />
+                {error && (
+                  <p className="mt-1 text-[12px] font-medium text-error">{error}</p>
+                )}
               </div>
               <div>
                 <label className="block text-[12px] font-semibold text-on-surface-variant mb-1">

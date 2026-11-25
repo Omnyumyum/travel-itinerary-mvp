@@ -13,6 +13,7 @@ import {
   X,
 } from 'lucide-react';
 import type { EmergencyContact, TaxiCardData, VoucherItem, VoucherType } from '../types';
+import { hasUnsafeHtml, sanitizePlainText } from '../utils/sanitize';
 
 interface VoucherSosModuleProps {
   vouchers: VoucherItem[];
@@ -74,9 +75,12 @@ export function VoucherSosModule({
   onUpdateTaxiCard,
 }: VoucherSosModuleProps) {
   const [selectedVoucher, setSelectedVoucher] = useState<VoucherItem | null>(null);
+  const [selectedSos, setSelectedSos] = useState<EmergencyContact | null>(null);
   const [taxiFullscreen, setTaxiFullscreen] = useState(false);
   const [editingTaxi, setEditingTaxi] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [copiedPhone, setCopiedPhone] = useState(false);
+  const [taxiError, setTaxiError] = useState('');
 
   const [taxiForm, setTaxiForm] = useState<TaxiCardData>(taxiCard);
 
@@ -90,20 +94,45 @@ export function VoucherSosModule({
     }
   };
 
+  const handleCopyPhone = async (phone: string) => {
+    try {
+      await navigator.clipboard.writeText(phone);
+      setCopiedPhone(true);
+      setTimeout(() => setCopiedPhone(false), 1800);
+    } catch {
+      // Clipboard fallback ignored
+    }
+  };
+
   const openTaxiEdit = () => {
     setTaxiForm(taxiCard);
+    setTaxiError('');
     setEditingTaxi(true);
   };
 
   const saveTaxiEdit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!taxiForm.hotelNameLocal.trim() || !taxiForm.addressLocal.trim()) return;
+    if (!taxiForm.hotelNameLocal.trim() || !taxiForm.addressLocal.trim()) {
+      setTaxiError('현지어 숙소명과 현지어 주소는 필수 입력 항목입니다.');
+      return;
+    }
+    if (
+      hasUnsafeHtml(taxiForm.hotelNameLocal) ||
+      hasUnsafeHtml(taxiForm.addressLocal) ||
+      hasUnsafeHtml(taxiForm.hotelNameKo) ||
+      hasUnsafeHtml(taxiForm.addressKo) ||
+      hasUnsafeHtml(taxiForm.languageLabel)
+    ) {
+      setTaxiError('HTML 태그나 script 코드는 입력할 수 없습니다.');
+      return;
+    }
+    setTaxiError('');
     onUpdateTaxiCard({
-      hotelNameLocal: taxiForm.hotelNameLocal.trim(),
-      addressLocal: taxiForm.addressLocal.trim(),
-      hotelNameKo: taxiForm.hotelNameKo.trim(),
-      addressKo: taxiForm.addressKo.trim(),
-      languageLabel: taxiForm.languageLabel.trim() || '현지어 택시 안내 카드',
+      hotelNameLocal: sanitizePlainText(taxiForm.hotelNameLocal),
+      addressLocal: sanitizePlainText(taxiForm.addressLocal),
+      hotelNameKo: sanitizePlainText(taxiForm.hotelNameKo),
+      addressKo: sanitizePlainText(taxiForm.addressKo),
+      languageLabel: sanitizePlainText(taxiForm.languageLabel) || '현지어 택시 안내 카드',
     });
     setEditingTaxi(false);
   };
@@ -226,16 +255,28 @@ export function VoucherSosModule({
 
       {/* 3. Local Emergency Contacts */}
       <section className="space-y-2.5">
-        <div className="flex items-center gap-1.5">
-          <ShieldAlert className="w-4 h-4 text-error" />
-          <h2 className="text-[15px] font-bold text-on-surface">현지 비상연락처 (SOS)</h2>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-1.5">
+            <ShieldAlert className="w-4 h-4 text-error" />
+            <h2 className="text-[15px] font-bold text-on-surface">현지 비상연락처 (SOS)</h2>
+          </div>
+          {contacts[0] && (
+            <button
+              type="button"
+              onClick={() => setSelectedSos(contacts[0])}
+              className="text-[12px] font-semibold text-error flex items-center gap-1 cursor-pointer"
+            >
+              긴급 안내 모달
+            </button>
+          )}
         </div>
 
         <div className="space-y-2">
           {contacts.map((contact) => (
             <div
               key={contact.id}
-              className={`rounded-2xl p-3.5 border shadow-xs flex items-center justify-between gap-3 ${
+              onClick={() => setSelectedSos(contact)}
+              className={`rounded-2xl p-3.5 border shadow-xs flex items-center justify-between gap-3 cursor-pointer transition-all hover:border-error/40 ${
                 contact.isUrgent
                   ? 'bg-error-container/35 border-error/25'
                   : 'bg-surface-container-lowest border-outline-variant/40'
@@ -263,6 +304,7 @@ export function VoucherSosModule({
 
               <a
                 href={`tel:${contact.phone.replace(/[^+\d]/g, '')}`}
+                onClick={(e) => e.stopPropagation()}
                 className={`px-3 py-2 rounded-xl text-[12px] font-bold flex items-center gap-1 shrink-0 ${
                   contact.isUrgent
                     ? 'bg-error text-white'
@@ -322,32 +364,135 @@ export function VoucherSosModule({
         </div>
       )}
 
-      {/* Taxi Card Fullscreen Modal */}
+      {/* Taxi Card Fullscreen Modal (Stitch Design) */}
       {taxiFullscreen && (
         <div
-          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-on-surface p-6 text-center"
+          className="fixed inset-0 z-50 bg-tertiary-fixed flex flex-col p-5 justify-between"
           onClick={() => setTaxiFullscreen(false)}
         >
-          <div className="w-full max-w-[420px] rounded-3xl bg-white p-7 space-y-5 shadow-2xl">
-            <span className="inline-block px-3 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed text-[12px] font-bold">
-              택시 기사님 안내용
+          <div
+            className="flex items-center justify-between pt-safe max-w-[440px] w-full mx-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <span className="px-3 py-1.5 rounded-full bg-on-tertiary-fixed text-tertiary-fixed text-[12px] font-bold">
+              🚖 기사님께 (To Driver)
+            </span>
+            <button
+              type="button"
+              onClick={() => setTaxiFullscreen(false)}
+              aria-label="택시 카드 전체 화면 닫기"
+              className="w-10 h-10 rounded-full bg-on-tertiary-fixed/10 text-on-tertiary-fixed flex items-center justify-center cursor-pointer"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+
+          <div
+            className="w-full max-w-[440px] mx-auto my-auto bg-surface-container-lowest rounded-2xl p-6 shadow-xl text-center space-y-3"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <span className="block text-[14px] text-on-surface-variant">
+              여기로 가주세요 (Please take me here)
             </span>
             <h3 className="text-[28px] font-bold text-on-surface leading-tight break-keep">
               {taxiCard.hotelNameLocal}
             </h3>
-            <p className="text-[18px] font-semibold text-on-surface-variant leading-relaxed break-keep">
+            <div className="w-full h-1 bg-tertiary-fixed rounded-full my-2" />
+            <p className="text-[18px] font-semibold text-on-surface select-all break-keep">
               {taxiCard.addressLocal}
             </p>
-            <div className="pt-4 border-t border-outline-variant/40 text-[13px] text-outline">
+            <p className="text-[13px] text-on-surface-variant pt-1">
               {taxiCard.hotelNameKo} ({taxiCard.addressKo})
-            </div>
+            </p>
+          </div>
+
+          <div
+            className="w-full max-w-[440px] mx-auto pb-safe"
+            onClick={(e) => e.stopPropagation()}
+          >
             <button
               type="button"
               onClick={() => setTaxiFullscreen(false)}
-              className="w-full py-3 rounded-xl bg-primary-container text-on-primary text-[14px] font-bold cursor-pointer"
+              className="w-full h-14 bg-on-tertiary-fixed text-tertiary-fixed rounded-xl text-[15px] font-bold shadow-lg active:scale-95 transition-all cursor-pointer"
             >
-              닫기
+              확인 완료 (화면 닫기)
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* SOS Emergency Modal */}
+      {selectedSos && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-on-surface/60 backdrop-blur-xs p-4"
+          onClick={() => setSelectedSos(null)}
+        >
+          <div
+            className="w-full max-w-[390px] bg-surface-container-lowest rounded-3xl p-6 shadow-2xl space-y-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between">
+              <span className="px-2.5 py-1 rounded-full bg-error-container text-error text-[11px] font-bold flex items-center gap-1">
+                <ShieldAlert className="w-3.5 h-3.5" />
+                {selectedSos.badge}
+              </span>
+              <button
+                type="button"
+                onClick={() => setSelectedSos(null)}
+                className="w-8 h-8 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container cursor-pointer"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <div className="space-y-1 text-center">
+              <p className="text-[12px] font-semibold text-on-surface-variant">
+                {selectedSos.role}
+              </p>
+              <h3 className="text-[19px] font-bold text-on-surface">
+                {selectedSos.name}
+              </h3>
+              <p className="text-[24px] font-mono font-bold text-error tracking-wide pt-1">
+                {selectedSos.phone}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 gap-2">
+              <a
+                href={`tel:${selectedSos.phone.replace(/[^+\d]/g, '')}`}
+                className="py-3 px-3 rounded-xl bg-error text-white text-[13px] font-bold flex items-center justify-center gap-1.5"
+              >
+                <Phone className="w-4 h-4" />
+                바로 전화걸기
+              </a>
+              <button
+                type="button"
+                onClick={() => handleCopyPhone(selectedSos.phone)}
+                className="py-3 px-3 rounded-xl bg-surface-container text-on-surface text-[13px] font-semibold flex items-center justify-center gap-1.5 cursor-pointer"
+              >
+                {copiedPhone ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
+                {copiedPhone ? '번호 복사됨' : '번호 복사'}
+              </button>
+            </div>
+
+            <div className="rounded-xl bg-tertiary-fixed/60 p-3 flex items-center justify-between gap-2">
+              <div className="min-w-0">
+                <p className="text-[11px] font-bold text-on-tertiary-fixed">현재 숙소</p>
+                <p className="text-[12px] text-on-tertiary-fixed-variant truncate">
+                  {taxiCard.hotelNameLocal}
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setSelectedSos(null);
+                  setTaxiFullscreen(true);
+                }}
+                className="px-2.5 py-1.5 rounded-lg bg-surface-container-lowest text-on-surface text-[11px] font-semibold shrink-0 cursor-pointer"
+              >
+                택시 카드 보기
+              </button>
+            </div>
           </div>
         </div>
       )}
@@ -390,9 +535,11 @@ export function VoucherSosModule({
                 <input
                   type="text"
                   value={taxiForm.hotelNameLocal}
-                  onChange={(e) => setTaxiForm({ ...taxiForm, hotelNameLocal: e.target.value })}
+                  onChange={(e) => {
+                    setTaxiForm({ ...taxiForm, hotelNameLocal: e.target.value });
+                    if (taxiError) setTaxiError('');
+                  }}
                   className="w-full px-3 py-2 rounded-xl border border-outline-variant text-[13px]"
-                  required
                 />
               </div>
               <div>
@@ -402,11 +549,16 @@ export function VoucherSosModule({
                 <input
                   type="text"
                   value={taxiForm.addressLocal}
-                  onChange={(e) => setTaxiForm({ ...taxiForm, addressLocal: e.target.value })}
+                  onChange={(e) => {
+                    setTaxiForm({ ...taxiForm, addressLocal: e.target.value });
+                    if (taxiError) setTaxiError('');
+                  }}
                   className="w-full px-3 py-2 rounded-xl border border-outline-variant text-[13px]"
-                  required
                 />
               </div>
+              {taxiError && (
+                <p className="text-[12px] font-medium text-error">{taxiError}</p>
+              )}
               <div>
                 <label className="block text-[12px] font-semibold text-on-surface-variant mb-1">
                   한국어 숙소명
