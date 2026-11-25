@@ -10,19 +10,26 @@ interface NoticeBannerProps {
 export function NoticeBanner({ notice, onUpdateNotice }: NoticeBannerProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [draft, setDraft] = useState(notice.content);
+  const [error, setError] = useState('');
 
   const startEdit = () => {
     setDraft(notice.content);
+    setError('');
     setIsEditing(true);
   };
 
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!draft.trim()) return;
+    const trimmed = draft.trim();
+    if (!trimmed) {
+      setError('공지 내용을 입력해 주세요.');
+      return;
+    }
+    setError('');
     const now = new Date();
     const timeLabel = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
     onUpdateNotice({
-      content: draft.trim(),
+      content: trimmed,
       updatedAt: `방금 ${timeLabel}`,
     });
     setIsEditing(false);
@@ -50,12 +57,18 @@ export function NoticeBanner({ notice, onUpdateNotice }: NoticeBannerProps) {
                 <form onSubmit={handleSave} className="mt-1 space-y-2">
                   <textarea
                     value={draft}
-                    onChange={(e) => setDraft(e.target.value)}
+                    onChange={(e) => {
+                      setDraft(e.target.value);
+                      if (error) setError('');
+                    }}
                     rows={2}
                     className="w-full rounded-xl border border-tertiary-container/30 bg-surface-container-lowest px-2.5 py-2 text-[13px] text-on-surface focus:outline-none focus:ring-2 focus:ring-tertiary-container"
                     placeholder="공지 내용을 입력하세요"
                     autoFocus
                   />
+                  {error && (
+                    <p className="text-[11.5px] font-medium text-error">{error}</p>
+                  )}
                   <div className="flex items-center justify-end gap-1.5">
                     <button
                       type="button"

@@ -82,6 +82,7 @@ export function ItineraryModule({
   const [formCategory, setFormCategory] = useState<ItineraryCategory>('관광');
   const [formMemo, setFormMemo] = useState('');
   const [formStatus, setFormStatus] = useState<ItineraryStatus>('예정');
+  const [formError, setFormError] = useState('');
 
   const dayItems = useMemo(() => {
     return items
@@ -101,6 +102,7 @@ export function ItineraryModule({
     setFormCategory('관광');
     setFormMemo('');
     setFormStatus('예정');
+    setFormError('');
     setModalOpen(true);
   };
 
@@ -112,6 +114,7 @@ export function ItineraryModule({
     setFormCategory(item.category);
     setFormMemo(item.memo);
     setFormStatus(item.status);
+    setFormError('');
     setModalOpen(true);
   };
 
@@ -123,13 +126,26 @@ export function ItineraryModule({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formPlace.trim()) return;
+    const trimmedPlace = formPlace.trim();
+    if (!/^([01]\d|2[0-3]):[0-5]\d$/.test(formTime)) {
+      setFormError('올바른 시간(HH:MM)을 입력해 주세요.');
+      return;
+    }
+    if (!trimmedPlace) {
+      setFormError('장소명 또는 일정 제목을 입력해 주세요.');
+      return;
+    }
+    if (trimmedPlace.length > 60) {
+      setFormError('장소명은 60자 이내로 입력해 주세요.');
+      return;
+    }
+    setFormError('');
     if (editingItem) {
       onUpdate({
         ...editingItem,
         day: formDay,
         time: formTime,
-        place: formPlace.trim(),
+        place: trimmedPlace,
         category: formCategory,
         memo: formMemo.trim(),
         status: formStatus,
@@ -138,7 +154,7 @@ export function ItineraryModule({
       onAdd({
         day: formDay,
         time: formTime,
-        place: formPlace.trim(),
+        place: trimmedPlace,
         category: formCategory,
         memo: formMemo.trim(),
         status: formStatus,
@@ -382,12 +398,18 @@ export function ItineraryModule({
               <input
                 type="text"
                 value={formPlace}
-                onChange={(e) => setFormPlace(e.target.value)}
+                onChange={(e) => {
+                  setFormPlace(e.target.value);
+                  if (formError) setFormError('');
+                }}
                 placeholder="예: 공항 미팅, 호텔 체크인, 시내 관광"
                 className="w-full px-3 py-2.5 rounded-xl border border-outline-variant bg-surface-container-lowest text-[14px] focus:outline-none focus:ring-2 focus:ring-primary-container"
-                required
               />
             </div>
+
+            {formError && (
+              <p className="text-[12px] font-medium text-error">{formError}</p>
+            )}
 
             <div className="grid grid-cols-2 gap-3">
               <div>
